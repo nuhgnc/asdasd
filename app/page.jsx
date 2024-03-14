@@ -1,6 +1,8 @@
+import Sidebar from "./ui/dashboard/sidebar/sidebar"
+
 const Homepage = () => {
   return (
-    <div>Homepage</div>
+    <Sidebar/>
   )
 }
 
