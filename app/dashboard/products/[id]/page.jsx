@@ -1,35 +1,58 @@
-import style from '@/app/ui/products/singleProduct/singleProduct.module.css'
-import Image from 'next/image'
-export default function
- SingleProductPage() {
+import { updateProduct } from "@/app/lib/actions";
+import { fetchProduct } from "@/app/lib/data";
+import styles from "@/app/ui/dashboard/products/singleProduct/singleProduct.module.css";
+import Image from "next/image";
+
+const SingleProductPage = async ({ params }) => {
+  const { id } = params;
+  const product = await fetchProduct(id);
+
   return (
-    <div className={style.container}>
-        <div className={style.infoContainer}>
-            <div className={style.imgContainer}>
-                <Image src='/noproduct.jpg' fill />
-            </div>
-            Nuh Genç
+    <div className={styles.container}>
+      <div className={styles.infoContainer}>
+        <div className={styles.imgContainer}>
+          <Image src="/noavatar.png" alt="" fill />
         </div>
-        <div className={style.formContainer}>
-            <form action="" className={style.form} >
-            <label >Title</label>
-            <input type="text" name='title' placeholder='Iphone 11' />
-            <label >Description</label>
-            <textarea name="description" id="description" cols="30" rows="10"></textarea>
-            <label >Prive</label>
-            <input type="text" name='price' placeholder='1300' />
-            <label >Created At</label>
-            <input type="text" name='createdAt' placeholder='03.03.2024' />
-            <label >Stock</label>
-            <textarea type="number" name='stock' placeholder='325' />
-            <label>Category</label>
-            <select name="cat" id="cat">
+        {product.title}
+      </div>
+      <div className={styles.formContainer}>
+        <form action={updateProduct} className={styles.form}>
+          <input type="hidden" name="id" value={product.id} />
+          <label>Title</label>
+          <input type="text" name="title" placeholder={product.title} />
+          <label>Price</label>
+          <input type="number" name="price" placeholder={product.price} />
+          <label>Stock</label>
+          <input type="number" name="stock" placeholder={product.stock} />
+          <label>Color</label>
+          <input
+            type="text"
+            name="color"
+            placeholder={product.color || "color"}
+          />
+          <label>Size</label>
+          <textarea
+            type="text"
+            name="size"
+            placeholder={product.size || "size"}
+          />
+          <label>Cat</label>
+          <select name="cat" id="cat">
             <option value="kitchen">Kitchen</option>
             <option value="computers">Computers</option>
           </select>
-            <button>Update</button>
-            </form>
-        </div>
+          <label>Description</label>
+          <textarea
+            name="desc"
+            id="desc"
+            rows="10"
+            placeholder={product.desc}
+          ></textarea>
+          <button>Update</button>
+        </form>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default SingleProductPage;

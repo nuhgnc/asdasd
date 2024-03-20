@@ -1,23 +1,32 @@
-import style from '@/app/ui/products/addProduct/addProduct.module.css'
+import { addProduct } from "@/app/lib/actions";
+import styles from "@/app/ui/dashboard/products/addProduct/addProduct.module.css";
 
-export default function AddProductPage() {
+const AddProductPage = () => {
   return (
-    <div className={style.container}>
-      <form action="" className={style.form}>
-        <input type="text" name='title' placeholder='title' required />
+    <div className={styles.container}>
+      <form action={addProduct} className={styles.form}>
+        <input type="text" placeholder="title" name="title" required />
         <select name="cat" id="cat">
-          <option value="general">Choose a category</option>
+          <option value="general">Choose a Category</option>
           <option value="kitchen">Kitchen</option>
-          <option value="phone">phone</option>
+          <option value="phone">Phone</option>
           <option value="computer">Computer</option>
         </select>
-        <input type="number" name="price" id="price" placeholder='price' />
-        <input type="number" name="stock" id="stock" placeholder='stock' />
-        <input type="text" name="color" id="color" placeholder='color' />
-        <input type="text" name="size" id="size" placeholder='size' />
-        <textarea name="desc" id="desc" placeholder='Desciprion' cols="30" rows="10"></textarea>
-        <button type='submit' >Submit</button>
+        <input type="number" placeholder="price" name="price" required />
+        <input type="number" placeholder="stock" name="stock" required />
+        <input type="text" placeholder="color" name="color" />
+        <input type="text" placeholder="size" name="size" />
+        <textarea
+          required
+          name="desc"
+          id="desc"
+          rows="16"
+          placeholder="Description"
+        ></textarea>
+        <button type="submit">Submit</button>
       </form>
     </div>
-  )
-}
+  );
+};
+
+export default AddProductPage;

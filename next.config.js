@@ -1,18 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = { images: {
-    formats: ["image/avif", "image/webp"],
+const nextConfig = {
+  images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "w7.pngwing.com",
-        port: "",
-        pathname: "/pngs/**",
+        hostname: "images.pexels.com",
       },
-      {
-        protocol:"https",
-        hostname:"cdn.vatanbilgisayar.com"
-      }
     ],
-  },}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
